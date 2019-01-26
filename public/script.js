@@ -1,12 +1,39 @@
 var getUser=document.getElementById('signUpForm');//selecting the sign up form/////
 var getId=document.getElementById('signInForm');//selecting the sign in form/////
 var getbody=document.getElementById('body'); 
+var color=document.getElementById('color');
 var userCount=0;
 
 //////on page loading///////////////////////////////////
 function load(){
 				     
 			   }
+
+//////////////color picker/////////////////////////////			   
+color.addEventListener("mouseout",function(event){
+	                                                var i;
+													var col=event.target.value; 
+													var head=document.getElementsByClassName("head");
+													for(i=0;i<head.length;i++)
+													head[i].style.borderBottomColor=col;
+													head=document.getElementsByClassName("form");
+													for(i=0;i<head.length;i++)
+													head[i].style.borderColor=col;
+													head=document.getElementsByClassName("input");
+													for(i=0;i<head.length;i++)
+													head[i].style.borderColor=col;
+													head=document.getElementsByClassName("code");
+													for(i=0;i<head.length;i++)
+													head[i].style.borderColor=col;
+													head=document.getElementsByClassName("inputButton");
+													for(i=0;i<head.length;i++)
+													{
+														head[i].style.borderColor=col;
+														head[i].onmouseover=function(){this.style.backgroundColor=col};
+														head[i].onmouseout=function(){this.style.backgroundColor="#1e1e1e"};
+													}
+												 });								 
+
 
 ///////////////When user creates account/////////////////
 getUser.addEventListener("submit",function(event){
