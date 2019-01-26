@@ -1,0 +1,89 @@
+.body{
+       background-color: #1e1e1e;
+     }
+
+.header{
+        color:white;
+        font-size:50;
+        font-family:Pixel Emulator;
+        border-bottom-style:solid;
+        border-bottom-width:2;
+        border-bottom-color:#ff0000;
+        margin-bottom:15;
+        padding-bottom: 20;
+        padding-top: 0;
+       }  
+
+
+.form{
+        border-style:solid;
+        border-width:1;
+        border-color:#ff0000;
+        display:none;
+        z-index:6;
+     }	 
+
+.f1{
+    color:white;
+    margin-top:20;
+    font-size:30;
+    font-weight:200;
+    word-wrap: break-word;
+   }	 
+
+.input{
+          width:70%;
+          border-width:2;
+          border-color:#ff0000;
+          margin-top:10;			  
+          margin-bottom:20;
+          border-style:solid;
+          font-size:20;	
+          font-weight:100;
+          color:black;			  
+  }
+        
+.input1    {
+          border-width:5;
+          border-color:#6F2DBD;
+          width:70%;
+          margin-top:10;			  
+          margin-bottom:20;
+          border-style:solid;
+          border-radius:10px;
+          font-size:20;	
+          font-weight:100;
+          color:black;			  
+        }	
+
+.code{
+          border-width:2;
+          border-color:#ff0000;
+          width:185;
+          margin-top:5;			  
+          margin-bottom:0;
+          margin-left:-8;
+          border-style:solid;
+          font-size:20;	
+          font-weight:100;
+          color:black;
+          display:none;			  
+    }			
+
+.inputButton{
+                border-width:2;
+                border-color:#ff0000;
+                color:white;
+                margin-right:10;
+                margin-top:10;
+                background-color: #1e1e1e;
+                font-size:20;
+            }	
+
+.inputButton:hover{
+                    background-color:#ff0000;
+                  }	
+
+.err{
+     color:red;
+    }			
