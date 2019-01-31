@@ -61,9 +61,9 @@
                 <p class="f1">Lets Go ! ! ! !</p>
                 <form id="signInForm">
                  <label class="err" id="mailerr"></label>
-                 <input title="Email" type="email" placeholder="Email..." id="mail" class="input" required><br>
+                 <input title="Email" name="Email" type="email" placeholder="Email..." id="mail" class="input" required><br>
                  <label class="err" id="passworderr"></label>
-                 <input title="password" type="password" placeholder="Password..." id="password" class="input" required><br>
+                 <input title="password" name="Password" type="password" placeholder="Password..." id="password" class="input" required><br>
                  <input type="submit" value="Sign in" class="inputButton">
                  <input type="button" value="Sign up" class="inputButton" id="signUp">
                 </form>
@@ -73,15 +73,15 @@
  <div class="row"> 
   <div class="col-sm-3"></div>           
     <div class="col-sm-6 form" id="signup">
-    <p align="center" class="f1">Plese fill in your information</p>
-    <form align="center" id="signUpForm">   <label class="err" id="nameerr"></label>
-    <input title="Name" type="name" placeholder="Name..." class="input" id='name' maxlength="15" required><br>
+    <p align="center" class="f1">Please fill in your information</p>
+    <form align="center" id="signUpForm" action="/save" method="POST">   <label class="err" id="nameerr"></label>
+    <input title="Name" name="name" type="name" placeholder="Name..." class="input" id='name' maxlength="15" required><br>
     <label class="err" id="emailerr"></label>
-    <input title="Email" type="email" placeholder="Email..." class="input" id="email" required><br>
-    <input title="password" type="password" placeholder="Password..." class="input" id="pass" required><br>
+    <input title="Email" name="email" type="email" placeholder="Email..." class="input" id="email" required><br>
+    <input title="password" name="password" type="password" placeholder="Password..." class="input" id="pass" required><br>
     <p class="f1">Who are you: <input type="radio" name="status" value="admin" id="admin"required>Admin<input type="radio" name="status" value="user" id="user"required>User</p>
     <label class="err" id="codeerr"></label>
-    <input type="password" placeholder="Code..." class="code" title="code" id="code"><br>
+    <input type="password" name="passcode" placeholder="Code..." class="code" title="code" id="code"><br>
     <input type="submit" value="Sign up" class="inputButton">
     <input type="button" value="Cancel" class="inputButton" id="cancel">
     </form>

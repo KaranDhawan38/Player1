@@ -2,6 +2,7 @@ var getUser=document.getElementById('signUpForm');//selecting the sign up form//
 var getId=document.getElementById('signInForm');//selecting the sign in form/////
 var getbody=document.getElementById('body'); 
 var color=document.getElementById('color');
+var request = new XMLHttpRequest();
 var userCount=0;
 
 //////on page loading///////////////////////////////////
@@ -10,7 +11,7 @@ function load(){
 			   }
 
 //////////////color picker/////////////////////////////			   
-color.addEventListener("mouseout",function(event){
+color.addEventListener("change",function(event){
 	                                                var i;
 													var col=event.target.value; 
 													var head=document.getElementsByClassName("head");
@@ -29,8 +30,6 @@ color.addEventListener("mouseout",function(event){
 													for(i=0;i<head.length;i++)
 													{
 														head[i].style.borderColor=col;
-														head[i].onmouseover=function(){this.style.backgroundColor=col};
-														head[i].onmouseout=function(){this.style.backgroundColor="#1e1e1e"};
 													}
 												 });								 
 
@@ -100,26 +99,24 @@ getUser.addEventListener("submit",function(event){
 												   /////////Every condition is satisfied///////////
 												   if(flag==0)
 												   {
-													 var user=new Object;   
+													 /*var user=new Object;   
 													 user={
 														    name:document.getElementById('name').value,
 															email:document.getElementById('email').value,
-															pass:document.getElementById('pass').value,
-															selection:stat
+															password:document.getElementById('pass').value,
+															status:stat
 													      };
-													 var userString=JSON.stringify(user);		 
-                                                     //localStorage.setItem("user"+userCount,userString);
-                                                     //userCount++;	
-                                                     //localStorage.setItem("userCount",userCount);
+													 user=JSON.stringify(user);
+													 request.open('POST', '/save');
+													 request.send(user);*/	 
 													 alert("Account Created!!!");
 												   }
-												   //////////Not satistfied///////////////////////
 												   else
 												   event.preventDefault();	   
                                                  });
 												  
 ///////////////When user signs in page///////////////////////////////////////////////////////////////////////												 
-getId.addEventListener("submit",function(event){
+/*getId.addEventListener("submit",function(event){
 	                                             /*flag=0;
 												 var obj;
 												 var current;
@@ -161,5 +158,5 @@ getId.addEventListener("submit",function(event){
                                                         event.preventDefault();	
 													}														
 												  }*/
-                                               });												 
+                                               //});*/												 
 												 												 
