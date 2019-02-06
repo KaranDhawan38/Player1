@@ -1,3 +1,4 @@
+/////////To initialize a schema to collection in our database///////////
 var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({
@@ -18,4 +19,5 @@ var userSchema = new mongoose.Schema({
                                                }       
                                       });
 
-mongoose.model('users',userSchema);                                      
+mongoose.model('users',userSchema);                                     
+/////////////////////////////////////////////////////////////////////// 
