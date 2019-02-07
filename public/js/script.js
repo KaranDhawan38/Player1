@@ -19,113 +19,112 @@ var userCount=0;
 
 //////////////color picker/////////////////////////////			   
 color.addEventListener("change",function(event){
-	                                                console.log("hello");
 	                                                var i;
-													var col=event.target.value; 
-													var head=document.getElementsByClassName("head");
-													for(i=0;i<head.length;i++)
-													head[i].style.borderBottomColor=col;
-													head=document.getElementsByClassName("form");
-													for(i=0;i<head.length;i++)
-													head[i].style.borderColor=col;
-													head=document.getElementsByClassName("input");
-													for(i=0;i<head.length;i++)
-													head[i].style.borderColor=col;
-													head=document.getElementsByClassName("code");
-													for(i=0;i<head.length;i++)
-													head[i].style.borderColor=col;
-													head=document.getElementsByClassName("inputButton");
-													for(i=0;i<head.length;i++)
-													{
-														head[i].style.borderColor=col;
-													}
-												 });								 
+																									var col=event.target.value; 
+																									var head=document.getElementsByClassName("head");
+																									for(i=0;i<head.length;i++)
+																									head[i].style.borderBottomColor=col;
+																									head=document.getElementsByClassName("form");
+																									for(i=0;i<head.length;i++)
+																									head[i].style.borderColor=col;
+																									head=document.getElementsByClassName("input");
+																									for(i=0;i<head.length;i++)
+																									head[i].style.borderColor=col;
+																									head=document.getElementsByClassName("code");
+																									for(i=0;i<head.length;i++)
+																									head[i].style.borderColor=col;
+																									head=document.getElementsByClassName("inputButton");
+																									for(i=0;i<head.length;i++)
+																									{
+																										head[i].style.borderColor=col;
+																									}
+																								});								 
 
 
 ///////////////When user creates account/////////////////
 getUser.addEventListener("submit",function(event){
-													var stat;
-													var flag=0;												   
-													var user=document.getElementById('user');
-													///////////check for any error in fields////////////
-													if(user.checked==true)
-													stat="user"; 													
-													else
-													{
-														var code=document.getElementById('code');
-														code.addEventListener("keydown",function(event){ document.getElementById('codeerr').innerHTML="";});	
-														user.addEventListener("click",function(event){ document.getElementById('codeerr').innerHTML="";});														
-														if(code.value=="")
-														{
-														document.getElementById('codeerr').innerHTML="Please fill the code*<br>";
-														flag=1;
-														}
-														else if(code.value!="1234")
-														{
-														document.getElementById('codeerr').innerHTML="Incorrect code*<br>";
-														flag=1;													  
-														}
-														else
-														{
-														stat="admin";
-														}														
-													}
-													/////////check name duplicacy///////////////////
-													var name=document.getElementById('name');
-													name.addEventListener("keydown",function(event){ document.getElementById('nameerr').innerHTML="";});
-													var user=new Object;   
-													user={
-																name: name.value,
-															};
-													 user=JSON.stringify(user);
-													 sendAJAX(user,'/nameCheck',function(res){
-																								flag=res.flag;
-																								if(flag==1)
-																								{
-																									document.getElementById('nameerr').innerHTML="Name has already been taken";
-																								}
-																								/////////Check email address////////////////////
-																								/*var mail=document.getElementById('email');
-																								mail.addEventListener("keydown",function(event){ document.getElementById('emailerr').innerHTML="";});
-																								if(mail.value.endsWith(".com")==false)
-																								{
-																									flag=1;
-																									document.getElementById('emailerr').innerHTML="<br>Invalid email address*<br>";													 
-																								}
-																								if(flag==0)
-																								{
-																									for(var i=0;i<userCount;i++)
-																									{
-																										var obj=JSON.parse(localStorage.getItem("user"+i));
-																										if(obj.email==mail.value)
+																										var stat;
+																										var flag=0;												   
+																										var user=document.getElementById('user');
+																										var code=document.getElementById('code');
+																										///////////check for any error in fields////////////
+																										if(user.checked==true)
+																										stat="user"; 													
+																										else if(code.checked==true)
 																										{
-																											flag=1;
-																											document.getElementById('emailerr').innerHTML="<br>Email address already taken*<br>"; 
-																											break;															
+																											code.addEventListener("keydown",function(event){ document.getElementById('codeerr').innerHTML="";});	
+																											user.addEventListener("click",function(event){ document.getElementById('codeerr').innerHTML="";});														
+																											if(code.value=="")
+																											{
+																												document.getElementById('codeerr').innerHTML="Please fill the code*<br>";
+																												flag=1;
+																											}
+																											else if(code.value!="1234")
+																											{
+																												document.getElementById('codeerr').innerHTML="Incorrect code*<br>";
+																												flag=1;													  
+																											}
+																											else
+																											{
+																											  stat="admin";
+																											}														
 																										}
-																									}
-																								}*/
-																								/////////Every condition is satisfied///////////
-																								if(flag==0)
-																								{
-																									/*var user=new Object;   
-																									user={
-																											name:document.getElementById('name').value,
-																											email:document.getElementById('email').value,
-																											password:document.getElementById('pass').value,
-																											status:stat
-																										};
-																									user=JSON.stringify(user);
-																									request.open('POST', '/save');
-																									request.send(user);*/	 
-																									alert("Account Created!!!");
-																								}
-																								else
-																								{
-																									alert("hello");
-																									event.preventDefault();	 
-																								}  	  
-																					     	});	 
+																										/////////check name duplicacy///////////////////
+																										var name=document.getElementById('name');
+																										name.addEventListener("keydown",function(event){ document.getElementById('nameerr').innerHTML="";});
+																										var user=new Object;   
+																										user={
+																													name: name.value,
+																												 };
+																										user=JSON.stringify(user);
+																										sendAJAX(user,'/nameCheck',function(res){
+																																															if(res.flag==1)
+																																															{
+																																																document.getElementById('nameerr').innerHTML="Name has already been taken";
+																																																flag=1;
+																																															}
+																																															/////////Check email address////////////////////
+																																															/*var mail=document.getElementById('email');
+																																															mail.addEventListener("keydown",function(event){ document.getElementById('emailerr').innerHTML="";});
+																																															if(mail.value.endsWith(".com")==false)
+																																															{
+																																																flag=1;
+																																																document.getElementById('emailerr').innerHTML="<br>Invalid email address*<br>";													 
+																																															}
+																																															if(flag==0)
+																																															{
+																																																for(var i=0;i<userCount;i++)
+																																																{
+																																																	var obj=JSON.parse(localStorage.getItem("user"+i));
+																																																	if(obj.email==mail.value)
+																																																	{
+																																																		flag=1;
+																																																		document.getElementById('emailerr').innerHTML="<br>Email address already taken*<br>"; 
+																																																		break;															
+																																																	}
+																																																}
+																																															}*/
+																																															/////////Every condition is satisfied///////////
+																																															if(flag==0)
+																																															{
+																																																/*var user=new Object;   
+																																																user={
+																																																		name:document.getElementById('name').value,
+																																																		email:document.getElementById('email').value,
+																																																		password:document.getElementById('pass').value,
+																																																		status:stat
+																																																	};
+																																																user=JSON.stringify(user);
+																																																request.open('POST', '/save');
+																																																request.send(user);*/	 
+																																																alert("Account Created!!!");
+																																															}
+																																															else
+																																															{
+																																																alert("hello");
+																																																event.preventDefault();	 
+																																															}  	  
+																																					});	 
                                                  });
 												  
 ///////////////When user signs in page///////////////////////////////////////////////////////////////////////												 

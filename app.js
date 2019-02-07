@@ -49,11 +49,7 @@ app.get('/',function(req,res){
                                                     style: 'style.css',
                                                     script: 'script.js'      
                                                    });          
-                             });                      
-                             
-app.get('/getUsers',function(req,res){
-                                                
-                                     });                             
+                             });                                                  
 
 app.post('/save',function(req,res){
                                       var newUser = new user();
