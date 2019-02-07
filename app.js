@@ -1,15 +1,15 @@
 var express = require('express');
 
-//var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 
-//var path = require('path');
+var path = require('path');
 
 var handlebars = require('express-handlebars');
 
-/*///////////////Database Working//////////////////////////////
+///////////////Database Working//////////////////////////////
 var mongoose = require('mongoose');
 
-require('./views/user.model');
+require('./public/js/user.model');
 
 mongoose.connect('mongodb://localhost:27017/project',{useNewUrlParser:true},function(err){
                                                                                          if(err)
@@ -19,22 +19,22 @@ mongoose.connect('mongodb://localhost:27017/project',{useNewUrlParser:true},func
                                                                                          }); 
 
 var user = mongoose.model('users');                                                                                         
-/////////////////////////////////////////////////////////////*/                                                                                       
+/////////////////////////////////////////////////////////////                                                                                       
                                                                                        
 
 var app = express();
 
-app.engine('handlebars',handlebars({extname: 'handlebars', defaultLayout: 'layout'}));
+app.engine('handlebars',handlebars({extname: 'handlebars', defaultLayout: 'layout',layoutsDir: path.join(__dirname,'views/layouts')}));
 
 app.set('view engine','handlebars');
 
 app.use(express.static('public'));
 
-//app.use(express.json());
+app.use(express.json());
 
-//app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 
-//app.use(bodyParser.json());
+app.use(bodyParser.json());
 
 var port = process.env.PORT || 3000;
                                        
@@ -45,21 +45,18 @@ app.listen(port,function(err){
                              });
 
 app.get('/',function(req,res){
-                                res.render('index',{title:'Player1 | Login',condition: false});
-                             });                             
+                                res.render('index',{title:'Player1 | Login',
+                                                    style: 'style.css',
+                                                    script: 'script.js'      
+                                                   });          
+                             });                      
+                             
+app.get('/getUsers',function(req,res){
+                                                
+                                     });                             
 
-/*app.post('/save',function(req,res){
-                                    insertRecord(req,res);
-                                  });
-                                        
-app.get('/users/list',function(req,res){
-                                           res.send("hello");
-                                       });                                        
-                                        
-function insertRecord(req,res)
-{
-    var newUser = new user();
-    //readJSONBody(req, function(task) {
+app.post('/save',function(req,res){
+                                      var newUser = new user();
                                       newUser.name = req.body.name;
                                       newUser.email = req.body.email;
                                       newUser.password = req.body.password;
@@ -68,25 +65,76 @@ function insertRecord(req,res)
                                                                       if(err)
                                                                       res.send('Error during insertion of records.');
                                                                       else
-                                                                      res.redirect('/users/list');
+                                                                      res.redirect('/');
                                                                     });
-                                    // });                              
-}  
+                                  }); 
+                                  
+app.post('/nameCheck',function(req,res){
+                                          readJSONBody(req, function(task) {
+                                                                             getUsers(function(userList){
+                                                                                                           var flag=0;
+                                                                                                           for(var i=0;i<userList.length;i++)
+                                                                                                           {
+                                                                                                             if(userList[i].name==task.name)
+                                                                                                             {
+                                                                                                               flag=1;
+                                                                                                               break;
+                                                                                                             }
+                                                                                                           }
+                                                                                                           if(flag==0)
+                                                                                                           res.send({flag:0});
+                                                                                                           else
+                                                                                                           res.send({flag:1});
+                                                                                                        });
+                                                                           });   
+                                       });     
+                                       
+app.post('/emailCheck',function(req,res){
+                                         readJSONBody(req, function(task) {
+                                                                           getUsers(function(userList){
+                                                                                                         var flag=0;
+                                                                                                         for(var i=0;i<userList.length;i++)
+                                                                                                         {
+                                                                                                           if(userList[i].email==task.email)
+                                                                                                           {
+                                                                                                             flag=1;
+                                                                                                             break;
+                                                                                                           }
+                                                                                                         }
+                                                                                                         if(flag==0)
+                                                                                                         res.send({flag:0});
+                                                                                                         else
+                                                                                                         res.send({flag:1});
+                                                                                                      });
+                                                                         });   
+                                       });                                            
 
 function readJSONBody(req, callback) 
 										   {
-											 var body = '';
-											 req.on('data', function(chunk) {
-																                        body += chunk;
-													                            });
-										   
-											 req.on('end', function() {
-                                                  var data = JSON.parse(body);
-                                                  callback(data);
-													                      });
-										   }
+                        var body = '';
+                        req.on('data', function(chunk) {
+                                                          body += chunk;
+                                                        });
+                        
+                        req.on('end', function() {
+                                                    var data = JSON.parse(body);
+                                                    callback(data);
+                                                  });
+                       }
+                       
+function getUsers(callback)
+{
+  user.find(function(err,docs){
+                                if(err)
+                                console.log('Error while retrieving data :'+err);
+                                else
+                                {
+                                  callback(docs);
+                                }
+                              });                                                       
+}                       
 
-var courses=[
+/*var courses=[
                 {id:1, name:"course1"},
                 {id:2, name:"course2"},
                 {id:3, name:"course3"},
