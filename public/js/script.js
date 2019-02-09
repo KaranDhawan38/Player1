@@ -1,7 +1,6 @@
 var getUser=document.getElementById('signUpForm');//selecting the sign up form/////
 var getId=document.getElementById('signInForm');//selecting the sign in form/////
 var color=document.getElementById('color');
-var request = new XMLHttpRequest();
 var userCount=0;
 
 //////on page loading///////////////////////////////////
@@ -42,90 +41,127 @@ color.addEventListener("change",function(event){
 
 
 ///////////////When user creates account/////////////////
-getUser.addEventListener("submit",function(event){
+getUser.addEventListener("click",function(event){
 																										var stat;
 																										var flag=0;												   
 																										var user=document.getElementById('user');
+																										var admin=document.getElementById('admin');
 																										var code=document.getElementById('code');
-																										///////////check for any error in fields////////////
+																										var name=document.getElementById('name');
+																										var mail=document.getElementById('email');
+																										var pass=document.getElementById('pass');
+																										var codeerr=document.getElementById('codeerr');
+																										var nameerr=document.getElementById('nameerr');
+																										var emailerr=document.getElementById('emailerr');
+																										var passerr=document.getElementById('passerr');
+																										code.addEventListener("keydown",function(event){ codeerr.innerHTML="";});	
+																										user.addEventListener("click",function(event){ codeerr.innerHTML="";});
+																										admin.addEventListener("click",function(event){ codeerr.innerHTML="";});
+																										name.addEventListener("keydown",function(event){ document.getElementById('nameerr').innerHTML="";});
+																										mail.addEventListener("keydown",function(event){ document.getElementById('emailerr').innerHTML="";});
+																										pass.addEventListener("keydown",function(event){ document.getElementById('passerr').innerHTML="";});
+																										///////////check if any field is left empty////////////
+																										if(name.value=="")
+																										{
+																											nameerr.innerHTML="Please fill this field";
+																											flag=1;
+																										}
+																										if(mail.value=="")
+																										{
+																											emailerr.innerHTML="Please fill this field";
+																											flag=1;
+																										}
+																										if(pass.value=="")
+																										{
+																											passerr.innerHTML="Please fill this field";
+																											flag=1;
+																										}
 																										if(user.checked==true)
 																										stat="user"; 													
-																										else if(code.checked==true)
-																										{
-																											code.addEventListener("keydown",function(event){ document.getElementById('codeerr').innerHTML="";});	
-																											user.addEventListener("click",function(event){ document.getElementById('codeerr').innerHTML="";});														
+																										else if(admin.checked==true)
+																										{														
 																											if(code.value=="")
 																											{
-																												document.getElementById('codeerr').innerHTML="Please fill the code*<br>";
+																												codeerr.innerHTML="Please fill the code";
 																												flag=1;
-																											}
-																											else if(code.value!="1234")
-																											{
-																												document.getElementById('codeerr').innerHTML="Incorrect code*<br>";
-																												flag=1;													  
 																											}
 																											else
 																											{
 																											  stat="admin";
 																											}														
 																										}
-																										/////////check name duplicacy///////////////////
-																										var name=document.getElementById('name');
-																										name.addEventListener("keydown",function(event){ document.getElementById('nameerr').innerHTML="";});
-																										var user=new Object;   
-																										user={
-																													name: name.value,
-																												 };
-																										user=JSON.stringify(user);
-																										sendAJAX(user,'/nameCheck',function(res){
-																																															if(res.flag==1)
-																																															{
-																																																document.getElementById('nameerr').innerHTML="Name has already been taken";
-																																																flag=1;
-																																															}
-																																															/////////Check email address////////////////////
-																																															/*var mail=document.getElementById('email');
-																																															mail.addEventListener("keydown",function(event){ document.getElementById('emailerr').innerHTML="";});
-																																															if(mail.value.endsWith(".com")==false)
-																																															{
-																																																flag=1;
-																																																document.getElementById('emailerr').innerHTML="<br>Invalid email address*<br>";													 
-																																															}
-																																															if(flag==0)
-																																															{
-																																																for(var i=0;i<userCount;i++)
-																																																{
-																																																	var obj=JSON.parse(localStorage.getItem("user"+i));
-																																																	if(obj.email==mail.value)
+																										else
+																										{
+																											codeerr.innerHTML="Please choose one option";
+																											flag=1;
+																										}
+																										if(flag==1);
+																										/////////Send all fields to server for evaluation///////////////////
+																										else
+																										{
+																											var user=new Object;
+																											if(stat=="user")
+																											{
+																												user={
+																															name: name.value,
+																															email: mail.value,
+																															password: pass,
+																															status: stat 
+																												     };
+																											}   
+																											else
+																											{
+																												user={
+																															name: name.value,
+																															email: mail.value,
+																															password: pass,
+																															status: stat,
+																															code: code.value 
+																												     };
+																											}
+																											user=JSON.stringify(user);
+																											var request = new XMLHttpRequest();
+																											request.open('POST', '/check');
+																											request.send(user);
+																											request.addEventListener("load",function(){
+																																																	var res=request.responseText;
+																																																	res=JSON.parse(res);
+																																																	if(res.stat=="admin")
 																																																	{
-																																																		flag=1;
-																																																		document.getElementById('emailerr').innerHTML="<br>Email address already taken*<br>"; 
-																																																		break;															
+																																																		if(res.email==1 || res.name==1 || res.code==1)
+																																																		{
+																																																			if(res.email==1)
+																																																			emailerr.innerHTML="Email address should not be used earlier";
+																																																			if(res.name==1)					
+																																																			nameerr.innerHTML="Name has already been taken";
+																																																			if(res.code==1)
+																																																			codeerr.innerHTML="Incorrect code";
+																																																		}
+																																																		else
+																																																		{
+																																																			alert("Account created please login !!");
+																																																			window.location.replace("/main");
+																																																		}
 																																																	}
-																																																}
-																																															}*/
-																																															/////////Every condition is satisfied///////////
-																																															if(flag==0)
-																																															{
-																																																/*var user=new Object;   
-																																																user={
-																																																		name:document.getElementById('name').value,
-																																																		email:document.getElementById('email').value,
-																																																		password:document.getElementById('pass').value,
-																																																		status:stat
-																																																	};
-																																																user=JSON.stringify(user);
-																																																request.open('POST', '/save');
-																																																request.send(user);*/	 
-																																																alert("Account Created!!!");
-																																															}
-																																															else
-																																															{
-																																																alert("hello");
-																																																event.preventDefault();	 
-																																															}  	  
-																																					});	 
-                                                 });
+																																																	else
+																																																	{
+																																																		if(res.email==1 || res.name==1)
+																																																		{
+																																																			if(res.email==1)
+																																																			emailerr.innerHTML="Email address should not be used earlier";
+																																																			if(res.name==1)					
+																																																			nameerr.innerHTML="Name has already been taken";
+																																																		}
+																																																		else
+																																																		{
+																																																			alert("Account created please login !!");
+																																																			window.location.replace("/main");
+																																																		}
+																																																	}
+																																																});
+
+																										}
+													                       });
 												  
 ///////////////When user signs in page///////////////////////////////////////////////////////////////////////												 
 /*getId.addEventListener("submit",function(event){
@@ -172,14 +208,14 @@ getUser.addEventListener("submit",function(event){
 												  }*/
 											   //});*/
 											   
-function sendAJAX(req,route,callback)
+/*function sendAJAX(req,route,callback)
 {
 	request.open('POST', route);
 	request.send(req);
-	request.onload = function(){
-								   var res=request.responseText;
-								   res=JSON.parse(res);
-								   callback(res);
-							   };
-}											   
+	request.addEventListener("load",function(){
+															                var res=request.responseText;
+															                res=JSON.parse(res);
+															                callback(res);
+							                              };
+}*/											   
 												 												 

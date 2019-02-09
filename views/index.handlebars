@@ -2,9 +2,7 @@
   <div class="row head">   
    <div class="col-sm-3"></div>     
    <div class="col-sm-6 text-center">
-    <a href="index.html" style="text-decoration: none;">
         <h1 class="header">Player1</h1>
-    </a>
     </div>
     <div class="col-sm-3 colPick text-right"><input type="color" value="#ff0000" id="color" style="padding:0;border-width:0"></div>
   </div>
@@ -28,15 +26,17 @@
   <div class="col-sm-3"></div>           
     <div class="col-sm-6 form" id="signup">
     <p align="center" class="f1">Please fill in your information</p>
-    <form align="center" id="signUpForm" action="/save" method="POST">   <label class="err" id="nameerr"></label>
-    <input title="Name" name="name" type="name" placeholder="Name..." class="input" id='name' maxlength="15" required><br>
-    <label class="err" id="emailerr"></label>
-    <input title="Email" name="email" type="email" placeholder="Email..." class="input" id="email" required><br>
-    <input title="password" name="password" type="password" placeholder="Password..." class="input" id="pass" required><br>
-    <p class="f1">Who are you: <input type="radio" name="status" value="admin" id="admin"required>Admin<input type="radio" name="status" value="user" id="user"required>User</p>
+    <form align="center">
+    <label class="err" id="nameerr"></label><br>
+    <input title="Name" name="name" type="name" placeholder="Name..." class="input" id='name' maxlength="15"><br>
+    <label class="err" id="emailerr"></label><br>
+    <input title="Email" name="email" type="email" placeholder="Email..." class="input" id="email"><br>
+    <label class="err" id="passerr"></label><br>
+    <input title="password" name="password" type="password" placeholder="Password..." class="input" id="pass"><br>
     <label class="err" id="codeerr"></label>
+    <p class="f1">Who are you: <input type="radio" name="status" value="admin" id="admin">Admin<input type="radio" name="status" value="user" id="user"required>User</p>
     <input type="password" name="passcode" placeholder="Code..." class="code" title="code" id="code"><br>
-    <input type="submit" value="Sign up" class="inputButton">
+    <input type="button" id="signUpForm" value="Sign up" class="inputButton">
     <input type="button" value="Cancel" class="inputButton" id="cancel">
     </form>
     </div>

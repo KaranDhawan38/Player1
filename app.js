@@ -18,7 +18,7 @@ mongoose.connect('mongodb://localhost:27017/project',{useNewUrlParser:true},func
                                                                                          console.log('Successfully connected to Database!!!');
                                                                                          }); 
 
-var user = mongoose.model('users');                                                                                         
+var user = mongoose.model('users');                                                                                        
 /////////////////////////////////////////////////////////////                                                                                       
                                                                                        
 
@@ -49,26 +49,26 @@ app.get('/',function(req,res){
                                                     style: 'style.css',
                                                     script: 'script.js'      
                                                    });          
-                             });                                                  
-
-app.post('/save',function(req,res){
-                                      var newUser = new user();
-                                      newUser.name = req.body.name;
-                                      newUser.email = req.body.email;
-                                      newUser.password = req.body.password;
-                                      newUser.status = req.body.status;
-                                      newUser.save(function(err,doc){
-                                                                      if(err)
-                                                                      res.send('Error during insertion of records.');
-                                                                      else
-                                                                      res.redirect('/');
-                                                                    });
-                                  }); 
+                             });
+                            
+app.get('/main',function(req,res){
+                                    res.render('main',{title:'Player1 | main',
+                                                       style: 'main.css',
+                                                       script: 'main.js'      
+                                                      });          
+                                 }); 
                                   
-app.post('/nameCheck',function(req,res){
+app.post('/check',function(req,res){
                                           readJSONBody(req, function(task) {
                                                                              getUsers(function(userList){
+                                                                                                           var status={
+                                                                                                                        email:0,
+                                                                                                                        name:0,
+                                                                                                                        code:0,
+                                                                                                                        stat:task.status
+                                                                                                                      };
                                                                                                            var flag=0;
+                                                                                                           //////Check for name duplicacy////
                                                                                                            for(var i=0;i<userList.length;i++)
                                                                                                            {
                                                                                                              if(userList[i].name==task.name)
@@ -77,33 +77,64 @@ app.post('/nameCheck',function(req,res){
                                                                                                                break;
                                                                                                              }
                                                                                                            }
-                                                                                                           if(flag==0)
-                                                                                                           res.send({flag:0});
+                                                                                                           if(flag==1)
+                                                                                                           {
+                                                                                                            status.name=1;
+                                                                                                           }
+                                                                                                           flag=0;
+                                                                                                           //////Check for email duplicacy////
+                                                                                                           for(var i=0;i<userList.length;i++)
+                                                                                                           {
+                                                                                                             if(userList[i].email==task.email)
+                                                                                                             {
+                                                                                                               flag=1;
+                                                                                                               break;
+                                                                                                             }
+                                                                                                           }
+                                                                                                           if(flag==1)
+                                                                                                           status.email=1;
+                                                                                                           if(task.status=="admin")
+                                                                                                           {
+                                                                                                            if(task.code!="1234")
+                                                                                                            status.code=1;
+                                                                                                            if(status.name==0 && status.email==0 && status.code==0)
+                                                                                                            {
+                                                                                                              var newUser = new user();
+                                                                                                              newUser.name = task.name;
+                                                                                                              newUser.email = task.email;
+                                                                                                              newUser.password = task.password;
+                                                                                                              newUser.status = task.status;
+                                                                                                              newUser.save(function(err,doc){
+                                                                                                                                              if(err)
+                                                                                                                                              res.send('Error during insertion of records.');
+                                                                                                                                              else
+                                                                                                                                              res.send(status);  
+                                                                                                                                            });       
+                                                                                                                                            
+                                                                                                            }
+                                                                                                           }
                                                                                                            else
-                                                                                                           res.send({flag:1});
+                                                                                                           {
+                                                                                                            if(status.name==0 && status.email==0)
+                                                                                                            {
+                                                                                                              var newUser = new user();
+                                                                                                              newUser.name = task.name;
+                                                                                                              newUser.email = task.email;
+                                                                                                              newUser.password = task.password;
+                                                                                                              newUser.status = task.status;
+                                                                                                              newUser.save(function(err,doc){
+                                                                                                                                              if(err)
+                                                                                                                                              res.send('Error during insertion of records.');
+                                                                                                                                              else
+                                                                                                                                              res.send(status);  
+                                                                                                                                            });       
+                                                                                                                                            
+                                                                                                            }
+                                                                                                           }
+                                                                                                           res.send(status);
                                                                                                         });
                                                                            });   
                                        });     
-                                       
-app.post('/emailCheck',function(req,res){
-                                         readJSONBody(req, function(task) {
-                                                                           getUsers(function(userList){
-                                                                                                         var flag=0;
-                                                                                                         for(var i=0;i<userList.length;i++)
-                                                                                                         {
-                                                                                                           if(userList[i].email==task.email)
-                                                                                                           {
-                                                                                                             flag=1;
-                                                                                                             break;
-                                                                                                           }
-                                                                                                         }
-                                                                                                         if(flag==0)
-                                                                                                         res.send({flag:0});
-                                                                                                         else
-                                                                                                         res.send({flag:1});
-                                                                                                      });
-                                                                         });   
-                                       });                                            
 
 function readJSONBody(req, callback) 
 										   {

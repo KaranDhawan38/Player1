@@ -19,5 +19,6 @@ var userSchema = new mongoose.Schema({
                                                }       
                                       });
 
-mongoose.model('users',userSchema);                                     
+
+mongoose.model('users',userSchema);   
 /////////////////////////////////////////////////////////////////////// 
