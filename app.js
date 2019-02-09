@@ -68,33 +68,38 @@ app.post('/check',function(req,res){
                                                                                                                         stat:task.status
                                                                                                                       };
                                                                                                            var flag=0;
-                                                                                                           //////Check for name duplicacy////
-                                                                                                           for(var i=0;i<userList.length;i++)
+                                                                                                           if(userList.length==0);
+                                                                                                           else
                                                                                                            {
-                                                                                                             if(userList[i].name==task.name)
-                                                                                                             {
-                                                                                                               flag=1;
-                                                                                                               break;
-                                                                                                             }
+                                                                                                            //////Check for name duplicacy////
+                                                                                                              for(var i=0;i<userList.length;i++)
+                                                                                                              {
+                                                                                                                if(userList[i].name==task.name)
+                                                                                                                {
+                                                                                                                  flag=1;
+                                                                                                                  break;
+                                                                                                                }
+                                                                                                              }
+                                                                                                              if(flag==1)
+                                                                                                              {
+                                                                                                                status.name=1;
+                                                                                                              }
+                                                                                                              flag=0;
+                                                                                                              //////Check for email duplicacy////
+                                                                                                              for(var i=0;i<userList.length;i++)
+                                                                                                              {
+                                                                                                                if(userList[i].email==task.email)
+                                                                                                                {
+                                                                                                                  flag=1;
+                                                                                                                  break;
+                                                                                                                }
+                                                                                                              }
+                                                                                                              if(flag==1)
+                                                                                                              status.email=1;
                                                                                                            }
-                                                                                                           if(flag==1)
-                                                                                                           {
-                                                                                                            status.name=1;
-                                                                                                           }
-                                                                                                           flag=0;
-                                                                                                           //////Check for email duplicacy////
-                                                                                                           for(var i=0;i<userList.length;i++)
-                                                                                                           {
-                                                                                                             if(userList[i].email==task.email)
-                                                                                                             {
-                                                                                                               flag=1;
-                                                                                                               break;
-                                                                                                             }
-                                                                                                           }
-                                                                                                           if(flag==1)
-                                                                                                           status.email=1;
                                                                                                            if(task.status=="admin")
                                                                                                            {
+                                                                                                            console.log("admin"); 
                                                                                                             if(task.code!="1234")
                                                                                                             status.code=1;
                                                                                                             if(status.name==0 && status.email==0 && status.code==0)
@@ -106,14 +111,14 @@ app.post('/check',function(req,res){
                                                                                                               newUser.status = task.status;
                                                                                                               newUser.save(function(err,doc){
                                                                                                                                               if(err)
-                                                                                                                                              res.send('Error during insertion of records.');
-                                                                                                                                              else
-                                                                                                                                              res.send(status);  
+                                                                                                                                              res.send('Error during insertion of records.');  
                                                                                                                                             });       
-                                                                                                                                            
+                                                                                                              res.send(status);                                                         
                                                                                                             }
+                                                                                                            else
+                                                                                                            res.send(status);
                                                                                                            }
-                                                                                                           else
+                                                                                                           else if(task.status=="user")
                                                                                                            {
                                                                                                             if(status.name==0 && status.email==0)
                                                                                                             {
@@ -125,13 +130,12 @@ app.post('/check',function(req,res){
                                                                                                               newUser.save(function(err,doc){
                                                                                                                                               if(err)
                                                                                                                                               res.send('Error during insertion of records.');
-                                                                                                                                              else
-                                                                                                                                              res.send(status);  
                                                                                                                                             });       
-                                                                                                                                            
+                                                                                                              res.send(status);                              
                                                                                                             }
+                                                                                                            else
+                                                                                                            res.send(status);
                                                                                                            }
-                                                                                                           res.send(status);
                                                                                                         });
                                                                            });   
                                        });     
