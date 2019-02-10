@@ -113,11 +113,8 @@ app.post('/check',function(req,res){
                                                                                                               newUser.save(function(err,doc){
                                                                                                                                               if(err)
                                                                                                                                               res.send('Error during insertion of records.');  
-                                                                                                                                            });       
-                                                                                                              res.send(status);                                                         
+                                                                                                                                            });                                                                                          
                                                                                                             }
-                                                                                                            else
-                                                                                                            res.send(status);
                                                                                                            }
                                                                                                            else if(task.status=="user")
                                                                                                            {
@@ -130,13 +127,11 @@ app.post('/check',function(req,res){
                                                                                                               newUser.status = task.status;
                                                                                                               newUser.save(function(err,doc){
                                                                                                                                               if(err)
-                                                                                                                                              res.send('Error during insertion of records.');
-                                                                                                                                            });       
-                                                                                                              res.send(status);                              
+                                                                                                                                              res.send('Error during insertion of records.');       
+                                                                                                                                            });                                              
                                                                                                             }
-                                                                                                            else
-                                                                                                            res.send(status);
                                                                                                            }
+                                                                                                           res.send(status);                
                                                                                                         });
                                                                            });   
                                        });     
