@@ -99,7 +99,7 @@ getUser.addEventListener("click",function(event){
 																										/////////Send all fields to server for evaluation///////////////////
 																										else
 																										{
-																											var user=new Object;
+																											var user=new Object();
 																											if(stat=="user")
 																											{
 																												user={

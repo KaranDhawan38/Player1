@@ -97,6 +97,7 @@ app.post('/check',function(req,res){
                                                                                                               if(flag==1)
                                                                                                               status.email=1;
                                                                                                            }
+                                                                                                           /////////Insert data to database/////////////
                                                                                                            if(task.status=="admin")
                                                                                                            {
                                                                                                             console.log("admin"); 
