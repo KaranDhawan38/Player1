@@ -165,7 +165,29 @@ getId.addEventListener("click",function(event){
 																										}
 																										if(flag==0)
 																										{
-                                                      alert("hello");
+																											var credentials={
+																																				mail:mail.value,
+																																				pass:pass.value
+																																			};
+																											credentials=JSON.stringify(credentials);								
+                                                      var Request = new XMLHttpRequest();
+																											Request.open('POST', '/login');
+																											Request.send(credentials);
+																											Request.addEventListener("load",function(){
+																																																	var res=Request.responseText;
+																																																	res=JSON.parse(res);
+																																																	if(res.email==0)
+																																																	{
+																																																		mailerr.innerHTML="Invalid email address";
+																																																	}
+																																																	else
+																																																	{
+																																																		if(res.pass==0)
+																																																		passerr.innerHTML="Incorrect password";
+																																																		else
+																																																		window.location.replace("/main");
+																																																	}
+																											                                          });
 																										}
 											  });					
 

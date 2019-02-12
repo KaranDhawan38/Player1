@@ -124,6 +124,33 @@ app.post('/save',function(req,res){
                                                                      });                                
                                   });                                                                              
 
+app.post('/login',function(req,res){
+                                    readJSONBody(req, function(task) {
+                                                                       getUsers(function(userList){ 
+                                                                                                    var status={
+                                                                                                                email:0,
+                                                                                                                pass:0,
+                                                                                                               };
+                                                                                                    if(userList.length==0);
+                                                                                                    else
+                                                                                                    {
+                                                                                                      /////finding email in database//////
+                                                                                                      for(var i=0;i<userList.length;i++)
+                                                                                                      {
+                                                                                                        if(userList[i].email==task.mail)
+                                                                                                        {
+                                                                                                          status.email=1;
+                                                                                                          if(userList[i].password==task.pass)
+                                                                                                          status.pass=1;
+                                                                                                          break;
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }  
+                                                                                                    res.send(status); 
+                                                                                                  });
+                                                                     });                                
+                                  });       
+
 function readJSONBody(req, callback) 
 										   {
                         var body = '';
