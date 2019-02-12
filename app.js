@@ -41,7 +41,7 @@ var port = process.env.PORT || 3000;
 app.listen(port,function(err){
                                 if(err)
                                 return console.log('Something went wrong :',err);
-                                console.log('Server is listening on '+port+'...');	
+                                console.log('Server is listening on port:'+port+'...');	
                              });
 
 app.get('/',function(req,res){
@@ -103,23 +103,26 @@ app.post('/check',function(req,res){
                                                                                                             if(task.code!="1234")
                                                                                                             status.code=1;
                                                                                                            }
-                                                                                                           /////////Insert data to database/////////////
-                                                                                                            if(status.name==0 && status.email==0 && status.code==0)
-                                                                                                            {
-                                                                                                              var newUser = new user();
-                                                                                                              newUser.name = task.name;
-                                                                                                              newUser.email = task.email;
-                                                                                                              newUser.password = task.password;
-                                                                                                              newUser.status = task.status;
-                                                                                                              newUser.save(function(err,doc){
-                                                                                                                                              if(err)
-                                                                                                                                              res.send('Error during insertion of records.');  
-                                                                                                                                            });                                                                                          
-                                                                                                            }
-                                                                                                           res.send(status);                
+                                                                                                            res.send(status);            
                                                                                                         });
                                                                            });   
-                                       });     
+                                       }); 
+
+app.post('/save',function(req,res){
+                                    readJSONBody(req, function(task) {
+                                                                      var newUser = new user();
+                                                                      newUser.name = task.name;
+                                                                      newUser.email = task.email;
+                                                                      newUser.password = task.password;
+                                                                      newUser.status = task.status;
+                                                                      newUser.save(function(err,doc){
+                                                                                                      if(err)
+                                                                                                      res.send('Error during insertion of records.');
+                                                                                                      else
+                                                                                                      res.send("Success");
+                                                                                                    });     
+                                                                     });                                
+                                  });                                                                              
 
 function readJSONBody(req, callback) 
 										   {
@@ -145,45 +148,6 @@ function getUsers(callback)
                                 }
                               });                                                       
 }                       
-
-/*var courses=[
-                {id:1, name:"course1"},
-                {id:2, name:"course2"},
-                {id:3, name:"course3"},
-              ];
-
-app.get('/',function(req,res){
-                                res.send("working");
-                              });  
-
-app.get('/api/courses',function(req,res){
-                                         res.send(courses);
-                                        });  
-
-/*app.get('/api/courses/:id',function(req,res){
-                                             const course = courses.find(c => c.id === parseInt(req.params.id));
-                                             if(!course)
-                                             res.status(404).send("Course was not found");
-                                             else
-                                             res.send(course);
-                                            }); 
-
-/*app.post('/api/courses',function(req,res){
-                                            const course = {
-                                                             id: courses.length+1,
-                                                             name: req.body.name
-                                                           };
-                                            courses.push(course);
-                                            res.send(course);               
-                                         });    
-                                         
-app.put('/api/courses/:id',function(req,res){
-                                              const course = courses.find(c => c.id === parseInt(req.params.id));
-                                              if(!course)
-                                              res.status(404).send("Course was not found");
-                                              course.name = req.body.name;
-                                              res.send(course);
-                                            });*/ 
 
 
                                             

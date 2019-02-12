@@ -105,7 +105,7 @@ getUser.addEventListener("click",function(event){
 																												user={
 																															name: name.value,
 																															email: mail.value,
-																															password: pass,
+																															password: pass.value,
 																															status: stat 
 																												     };
 																											}   
@@ -114,7 +114,7 @@ getUser.addEventListener("click",function(event){
 																												user={
 																															name: name.value,
 																															email: mail.value,
-																															password: pass,
+																															password: pass.value,
 																															status: stat,
 																															code: code.value 
 																												     };
@@ -143,8 +143,13 @@ getUser.addEventListener("click",function(event){
 																																																		}
 																																																		else
 																																																		{
-																																																			alert("Account created please login !!");
-																																																			window.location.replace("/main");
+																																																			var Request = new XMLHttpRequest();
+																																																			Request.open('POST', '/save');
+																																																			Request.send(user);
+																																																			Request.addEventListener("load",function(){
+																																																																									alert("Account created please login !!");
+																																																																									window.location.replace("/");
+																																																			                                          });
 																																																		}
 																																																	});
 
