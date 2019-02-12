@@ -11,12 +11,12 @@
       <div class="col-sm-3"></div>
         <div class="col-sm-6 form text-center" id="inform">
                 <p class="f1">Lets Go ! ! ! !</p>
-                <form id="signInForm">
-                 <label class="err" id="mailerr"></label>
+                <form>
+                 <label class="err" id="mailerr"></label><br>
                  <input title="Email" name="Email" type="email" placeholder="Email..." id="mail" class="input" required><br>
-                 <label class="err" id="passworderr"></label>
+                 <label class="err" id="passworderr"></label><br>
                  <input title="password" name="Password" type="password" placeholder="Password..." id="password" class="input" required><br>
-                 <input type="submit" value="Sign in" class="inputButton">
+                 <input type="button" id="signInForm" value="Sign in" class="inputButton">
                  <input type="button" value="Sign up" class="inputButton" id="signUp">
                 </form>
             </div> 
@@ -24,9 +24,9 @@
   </div>                 
  <div class="row"> 
   <div class="col-sm-3"></div>           
-    <div class="col-sm-6 form" id="signup">
+    <div class="col-sm-6 form text-center" id="signup">
     <p align="center" class="f1">Please fill in your information</p>
-    <form align="center">
+    <form>
     <label class="err" id="nameerr"></label><br>
     <input title="Name" name="name" type="name" placeholder="Name..." class="input" id='name' maxlength="15"><br>
     <label class="err" id="emailerr"></label><br>
