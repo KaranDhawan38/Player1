@@ -1,20 +1,7 @@
 var getUser=document.getElementById('signUpForm');//selecting the sign up form/////
 var getId=document.getElementById('signInForm');//selecting the sign in form/////
 var color=document.getElementById('color');
-var userCount=0;
-
-//////on page loading///////////////////////////////////
-/*function load()
-{
-	request.open("GET","/getUsers");
-	request.send();
-	request.onload = function(){
-								obj=request.responseText;
-								obj=JSON.parse(obj);
-							   };
-	console.log(obj);						   						   					      
-}*/
-
+var cancel=document.getElementById('cancel');
 
 //////////////color picker/////////////////////////////			   
 color.addEventListener("change",function(event){
@@ -210,5 +197,10 @@ getUser.addEventListener("click",function(event){
 															                res=JSON.parse(res);
 															                callback(res);
 							                              };
-}*/											   
+}*/									
+
+cancel.addEventListener('click',function(){
+																						 document.getElementById('user').checked=false;
+																						 document.getElementById('admin').checked=false;
+                                          });
 												 												 
