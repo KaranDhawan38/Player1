@@ -144,60 +144,30 @@ getUser.addEventListener("click",function(event){
 													                       });
 												  
 ///////////////When user signs in page///////////////////////////////////////////////////////////////////////												 
-/*getId.addEventListener("submit",function(event){
-	                                             /*flag=0;
-												 var obj;
-												 var current;
-	                                             ////////////Validate email id/////////////////////
-												 var mail=document.getElementById('mail');
-												 var pass=document.getElementById('password');
-												 mail.addEventListener("keydown",function(event){ document.getElementById('mailerr').innerHTML="";});
-												 pass.addEventListener("keydown",function(event){ document.getElementById('passworderr').innerHTML="";});
-												 for(var i=0;i<userCount;i++)
-												  {
-												    obj=JSON.parse(localStorage.getItem("user"+i));
-												    if(obj.email==mail.value)
-												     {
-													  flag=1;
-													  current=i;
-                                                      break;															
-												     }
-												  }
-												  if(flag==0)
-												  {
-													document.getElementById('mailerr').innerHTML="<br>Email address not found*<br>";
-                                                    event.preventDefault();														
-												  }
-												  else
-												  {
-													/////////validating password/////////////////////////////////////////////////// 
-													if(pass.value==obj.pass)
-													{	
-													  sessionStorage.setItem("currentUser",current);	
-													  if(obj.selection=="admin")
-													  window.location.replace("file:///C:/Users/Karans/Desktop/HTML/UCA/Cart/Using LocalStorage/Seller/index.html");	  
-                                                      else
-													  window.location.replace("file:///C:/Users/Karans/Desktop/HTML/UCA/Cart/Using LocalStorage/Buyer/index.html");
-                                                      event.preventDefault();												  
-													}
-                                                    else
-													{
-														document.getElementById('passworderr').innerHTML="<br>Incorrect Password*<br>";
-                                                        event.preventDefault();	
-													}														
-												  }*/
-											   //});*/
-											   
-/*function sendAJAX(req,route,callback)
-{
-	request.open('POST', route);
-	request.send(req);
-	request.addEventListener("load",function(){
-															                var res=request.responseText;
-															                res=JSON.parse(res);
-															                callback(res);
-							                              };
-}*/									
+getId.addEventListener("click",function(event){
+	                                                  var flag=0;
+																										////////////Validate email id/////////////////////
+																										var mailerr=document.getElementById('mailerr');
+																										var passerr= document.getElementById('passworderr');
+																										var mail=document.getElementById('mail');
+																										var pass=document.getElementById('password');
+																										mail.addEventListener("keydown",function(event){mailerr.innerHTML="";});
+																										pass.addEventListener("keydown",function(event){passerr.innerHTML="";});
+																										if(mail.value=="")
+																										{
+																											mailerr.innerHTML="Please fill this field";
+																											flag=1;
+																										}
+																										if(pass.value=="")
+																										{
+																											passerr.innerHTML="Please fill this field";
+																											flag=1;
+																										}
+																										if(flag==0)
+																										{
+                                                      alert("hello");
+																										}
+											  });					
 
 cancel.addEventListener('click',function(){
 																						 document.getElementById('user').checked=false;
