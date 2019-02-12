@@ -97,12 +97,13 @@ app.post('/check',function(req,res){
                                                                                                               if(flag==1)
                                                                                                               status.email=1;
                                                                                                            }
-                                                                                                           /////////Insert data to database/////////////
+                                                                                                           flag=0;
                                                                                                            if(task.status=="admin")
                                                                                                            {
-                                                                                                            console.log("admin"); 
                                                                                                             if(task.code!="1234")
                                                                                                             status.code=1;
+                                                                                                           }
+                                                                                                           /////////Insert data to database/////////////
                                                                                                             if(status.name==0 && status.email==0 && status.code==0)
                                                                                                             {
                                                                                                               var newUser = new user();
@@ -115,22 +116,6 @@ app.post('/check',function(req,res){
                                                                                                                                               res.send('Error during insertion of records.');  
                                                                                                                                             });                                                                                          
                                                                                                             }
-                                                                                                           }
-                                                                                                           else if(task.status=="user")
-                                                                                                           {
-                                                                                                            if(status.name==0 && status.email==0)
-                                                                                                            {
-                                                                                                              var newUser = new user();
-                                                                                                              newUser.name = task.name;
-                                                                                                              newUser.email = task.email;
-                                                                                                              newUser.password = task.password;
-                                                                                                              newUser.status = task.status;
-                                                                                                              newUser.save(function(err,doc){
-                                                                                                                                              if(err)
-                                                                                                                                              res.send('Error during insertion of records.');       
-                                                                                                                                            });                                              
-                                                                                                            }
-                                                                                                           }
                                                                                                            res.send(status);                
                                                                                                         });
                                                                            });   

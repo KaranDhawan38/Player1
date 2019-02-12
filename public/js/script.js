@@ -126,15 +126,19 @@ getUser.addEventListener("click",function(event){
 																											request.addEventListener("load",function(){
 																																																	var res=request.responseText;
 																																																	res=JSON.parse(res);
-																																																	if(res.stat=="admin")
+																																																  var codeFlag=0;
+																																																	if(res.stat=='admin')
 																																																	{
-																																																		if(res.email==1 || res.name==1 || res.code==1)
-																																																		{
+																																																		if(res.code==1)
+																																																		codeFlag=1;
+																																																	}
+																																																	 if(res.email==1 || res.name==1 || codeFlag==1)
+																																																	 {
 																																																			if(res.email==1)
 																																																			emailerr.innerHTML="Email address should not be used earlier";
 																																																			if(res.name==1)					
 																																																			nameerr.innerHTML="Name has already been taken";
-																																																			if(res.code==1)
+																																																			if(codeFlag==1)
 																																																			codeerr.innerHTML="Incorrect code";
 																																																		}
 																																																		else
@@ -142,25 +146,9 @@ getUser.addEventListener("click",function(event){
 																																																			alert("Account created please login !!");
 																																																			window.location.replace("/main");
 																																																		}
-																																																	}
-																																																	else
-																																																	{
-																																																		if(res.email==1 || res.name==1)
-																																																		{
-																																																			if(res.email==1)
-																																																			emailerr.innerHTML="Email address should not be used earlier";
-																																																			if(res.name==1)					
-																																																			nameerr.innerHTML="Name has already been taken";
-																																																		}
-																																																		else
-																																																		{
-																																																			alert("Account created please login !!");
-																																																			window.location.replace("/main");
-																																																		}
-																																																	}
-																																																});
+																																																	});
 
-																										}
+																											   }																					
 													                       });
 												  
 ///////////////When user signs in page///////////////////////////////////////////////////////////////////////												 
