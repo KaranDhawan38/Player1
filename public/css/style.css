@@ -1,7 +1,3 @@
-.body{
-       background-color: #1e1e1e;
-     }
-
 .head{
       border-bottom-style:solid;
       border-bottom-width:2;
@@ -16,9 +12,10 @@
 
 .header{
         color:white;
-        font-size:50;
+        font-size:35;
         font-family:BankGothic Lt BT;
-        padding-top: 0;
+        padding-left: 10;
+        cursor: pointer;
        }  
 
 
@@ -75,7 +72,7 @@
             }	
 
 .inputButton:hover{
-                    background-color: #333333;
+                    background-color: #252526;
                   }	            
 
 .err{

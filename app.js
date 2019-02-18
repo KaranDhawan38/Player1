@@ -47,14 +47,16 @@ app.listen(port,function(err){
 app.get('/',function(req,res){
                                 res.render('index',{title:'Player1 | Login',
                                                     style: 'style.css',
-                                                    script: 'script.js'      
+                                                    script: 'script.js',
+                                                    jquery: 'index.js'      
                                                    });          
                              });
                             
 app.get('/main',function(req,res){
                                     res.render('main',{title:'Player1 | main',
                                                        style: 'main.css',
-                                                       script: 'main.js'      
+                                                       script: 'main.js',
+                                                       jquery: 'mainjquery.js'      
                                                       });          
                                  }); 
                                   

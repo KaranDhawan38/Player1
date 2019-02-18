@@ -1,3 +1,7 @@
-h1{
-   color: red;   
-  }
+.head{
+      font-family:BankGothic Lt BT;
+      font-size: 35;
+      padding-left:10;
+      color:white;
+      cursor: pointer;
+     }  

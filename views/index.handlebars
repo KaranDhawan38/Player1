@@ -1,13 +1,16 @@
  <div class="container-fluid">
-  <div class="row head">   
-   <div class="col-sm-3"></div>     
-   <div class="col-sm-6 text-center">
-        <h1 class="header">Player1</h1>
-    </div>
-    <div class="col-sm-3 colPick text-right"><input type="color" value="#ff0000" id="color" style="padding:0;border-width:0"></div>
-  </div>
-  <br>
-  <div class="row">
+   <div class="row">
+        <nav class="navbar navbar-inverse navbar-top" style="border-bottom-color: red;background-color:#1e1e1e">   
+         <div class="text-center">
+          <a href="/" style="text-decoration: none!important;">
+            <img src="images/icon.png" height="50" width="50" style="padding-bottom:10"/>
+            <label class="header">player1</label>
+          </a>
+         </div>
+         </nav>   
+    <!--<div class="col-sm-3 colPick text-right"><input type="color" value="#ff0000" id="color" style="padding:0;border-width:0"></div>-->
+     </div>
+  <div class="row" style="margin-top:40;">
       <div class="col-sm-3"></div>
         <div class="col-sm-6 form text-center" id="inform">
                 <p class="f1">Lets Go ! ! ! !</p>
@@ -34,7 +37,9 @@
     <label class="err" id="passerr"></label><br>
     <input title="Password" name="password" type="password" placeholder="Password..." class="input" id="pass"><br>
     <label class="err" id="codeerr"></label>
-    <p class="f1">Who are you: <input type="radio" name="status" value="admin" id="admin">Admin<input type="radio" name="status" value="user" id="user"required>User</p>
+    <div class="radio">
+    <label class="f1">Who are you: <label style="margin-left:10"><input type="radio" style="margin-top:15" name="status" value="admin" id="admin">Admin</label><label style="margin-left:10"><input type="radio" name="status" style="margin-top:15" value="user" id="user">User</label></label>
+    </div>
     <input type="password" name="passcode" placeholder="Code..." class="code" title="Code" id="code"><br>
     <input type="button" id="signUpForm" value="Sign up" class="inputButton">
     <input type="button" value="Cancel" class="inputButton" id="cancel">

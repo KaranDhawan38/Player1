@@ -1,0 +1,32 @@
+$(document).ready(function(){
+    $("#logo").delay(500).animate({right:560});
+    $("#inform").slideDown(600);
+    $('#signUp').click(function(){
+                                        $('#mail').val("");
+                                        $('#password').val("");
+                                        $('#mailerr').html("");
+                                        $('#passworderr').html("");
+                                        $("#inform").slideUp(600);
+                                        $("#signup").delay(600).slideDown(600);
+                                    });
+    $('#cancel').click(function(){
+                                        $('#name').val("");
+                                        $('#email').val("");	
+                                        $('#pass').val("");	
+                                        $('#code').val("");	
+                                        $('#nameerr').html("");
+                                        $('#emailerr').html("");	
+                                        $('#codeerr').html("");
+                                        $('#passerr').html("");
+                                        $(".code").slideUp(400);																		
+                                        $("#signup").slideUp(600);
+                                        $("#inform").delay(600).slideDown(600);
+                                });	
+    $('#admin').click(function(){								
+                                        $(".code").slideDown(400);
+                                });	
+    $('#user').click(function(){								
+                                        $(".code").slideUp(400);
+                                        $("codeerr").innerHTML="";
+                                });															   
+});		

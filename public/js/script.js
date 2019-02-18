@@ -1,10 +1,10 @@
 var getUser=document.getElementById('signUpForm');//selecting the sign up form/////
 var getId=document.getElementById('signInForm');//selecting the sign in form/////
-var color=document.getElementById('color');
+//var color=document.getElementById('color');
 var cancel=document.getElementById('cancel');
 
 //////////////color picker/////////////////////////////			   
-color.addEventListener("change",function(event){
+/*color.addEventListener("change",function(event){
 	                                                var i;
 																									var col=event.target.value; 
 																									var head=document.getElementsByClassName("head");
@@ -24,7 +24,7 @@ color.addEventListener("change",function(event){
 																									{
 																										head[i].style.borderColor=col;
 																									}
-																								});								 
+																								});	*/							 
 
 
 ///////////////When user creates account/////////////////
