@@ -1,12 +1,20 @@
 <div class="container-fluid">
     <div class="row">
-        <nav class="navbar navbar-inverse" style="border-bottom-color: red;background-color:#1e1e1e">
-            <div class="text-center" id="logo" style="position:relative">
-                <a href="/main" style="text-decoration: none!important;">
+         <nav class="navbar navbar-inverse navbar-fixed-top" style="border-bottom-color: red;background-color:#1e1e1e">
+            <div id="logo" style="position:relative">
+                <a href="/main" class="text-left" style="margin-left:10;text-decoration: none!important;">
                     <img src="images/icon.png" class="logo" height="50" width="50" style="padding-bottom:10"/>
                     <label class="head">player1</label>
                 </a>
+                <div class="dropdown text-right">
+                        <button class="details dropdown-toggle" type="button" data-toggle="dropdown">{{username}} ▼</button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="/main">{{email}}</a></li>
+                            <li><a href="#">Change password</a></li>
+                            <li><a href="/logout">Logout</a></li>
+                        </ul>
+                </div>
             </div>
-        </nav>
+         </nav>
     </div> 
 </div>

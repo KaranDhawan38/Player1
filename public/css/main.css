@@ -5,3 +5,13 @@
       color:white;
       cursor: pointer;
      }  
+
+.details{
+          color: white;
+          font-size: 15;
+          margin-right:10;
+          margin-top:-40;
+          background-color:#1e1e1e;
+          border-color:#1e1e1e;
+          border-style:none;   
+        }   

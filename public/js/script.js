@@ -166,11 +166,11 @@ getId.addEventListener("click",function(event){
 																										if(flag==0)
 																										{
 																											var credentials={
-																																				mail:mail.value,
-																																				pass:pass.value
-																																			};
+																																mail:mail.value,
+																																pass:pass.value
+																															};
 																											credentials=JSON.stringify(credentials);								
-                                                      var Request = new XMLHttpRequest();
+                                                                                                            var Request = new XMLHttpRequest();
 																											Request.open('POST', '/login');
 																											Request.send(credentials);
 																											Request.addEventListener("load",function(){

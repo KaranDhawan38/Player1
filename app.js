@@ -6,6 +6,8 @@ var path = require('path');
 
 var handlebars = require('express-handlebars');
 
+var session = require('express-session');
+
 ///////////////Database Working//////////////////////////////
 var mongoose = require('mongoose');
 
@@ -36,6 +38,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(bodyParser.json());
 
+app.use(session({secret: 'canputanythinghere', resave: false, saveUninitialized: true}));
+
 var port = process.env.PORT || 3000;
                                        
 app.listen(port,function(err){
@@ -45,18 +49,28 @@ app.listen(port,function(err){
                              });
 
 app.get('/',function(req,res){
-                                res.render('index',{title:'Player1 | Login',
-                                                    style: 'style.css',
-                                                    script: 'script.js',
-                                                    jquery: 'index.js'      
-                                                   });          
+                                if(!req.session.username)
+                                {
+                                  res.render('index',{title:'Player1 | Login',
+                                                      style: 'style.css',
+                                                      script: 'script.js',
+                                                      jquery: 'index.js'      
+                                                     });  
+                                }
+                                else                   
+                                res.redirect('/main');
                              });
                             
 app.get('/main',function(req,res){
+                                    if(!req.session.username)
+                                    res.redirect('/');
+                                    else
                                     res.render('main',{title:'Player1 | main',
                                                        style: 'main.css',
                                                        script: 'main.js',
-                                                       jquery: 'mainjquery.js'      
+                                                       jquery: 'mainjquery.js',
+                                                       username: req.session.username,
+                                                       email: req.session.email     
                                                       });          
                                  }); 
                                   
@@ -137,7 +151,8 @@ app.post('/login',function(req,res){
                                                                                                     else
                                                                                                     {
                                                                                                       /////finding email in database//////
-                                                                                                      for(var i=0;i<userList.length;i++)
+                                                                                                      var i;
+                                                                                                      for(i=0;i<userList.length;i++)
                                                                                                       {
                                                                                                         if(userList[i].email==task.mail)
                                                                                                         {
@@ -147,7 +162,12 @@ app.post('/login',function(req,res){
                                                                                                           break;
                                                                                                         }
                                                                                                       }
-                                                                                                    }  
+                                                                                                      if(status.email==1 && status.pass==1)
+                                                                                                      {
+                                                                                                        req.session.username = userList[i].name;
+                                                                                                        req.session.email = userList[i].email;
+                                                                                                      } 
+                                                                                                    }
                                                                                                     res.send(status); 
                                                                                                   });
                                                                      });                                
