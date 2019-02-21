@@ -15,3 +15,12 @@
           border-color:#1e1e1e;
           border-style:none;   
         }   
+
+.list{
+       color: white!important;
+       text-align: center;
+     }        
+        
+ .list:hover{
+              background-color: #252526!important;
+            }       

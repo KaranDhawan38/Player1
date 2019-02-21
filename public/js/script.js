@@ -1,31 +1,6 @@
 var getUser=document.getElementById('signUpForm');//selecting the sign up form/////
 var getId=document.getElementById('signInForm');//selecting the sign in form/////
-//var color=document.getElementById('color');
 var cancel=document.getElementById('cancel');
-
-//////////////color picker/////////////////////////////			   
-/*color.addEventListener("change",function(event){
-	                                                var i;
-																									var col=event.target.value; 
-																									var head=document.getElementsByClassName("head");
-																									for(i=0;i<head.length;i++)
-																									head[i].style.borderBottomColor=col;
-																									head=document.getElementsByClassName("form");
-																									for(i=0;i<head.length;i++)
-																									head[i].style.borderColor=col;
-																									head=document.getElementsByClassName("input");
-																									for(i=0;i<head.length;i++)
-																									head[i].style.borderColor=col;
-																									head=document.getElementsByClassName("code");
-																									for(i=0;i<head.length;i++)
-																									head[i].style.borderColor=col;
-																									head=document.getElementsByClassName("inputButton");
-																									for(i=0;i<head.length;i++)
-																									{
-																										head[i].style.borderColor=col;
-																									}
-																								});	*/							 
-
 
 ///////////////When user creates account/////////////////
 getUser.addEventListener("click",function(event){
