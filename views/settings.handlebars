@@ -1,6 +1,6 @@
 <div class="container-fluid">
          <nav class="navbar navbar-inverse navbar-fixed-top" style="border-bottom-color: red;background-color:#1e1e1e">
-            <div id="logo" style="position:relative">
+            <div>
                 <a href="/main" class="text-left" style="margin-left:10;text-decoration: none!important;">
                     <img src="images/icon.png" class="logo" height="50" width="50" style="padding-bottom:10"/>
                     <label class="head">player1</label>
@@ -14,4 +14,21 @@
                 </div>
             </div>
          </nav>
+    <div class="row" style="margin-top:90"> 
+     <div class="col-sm-3"></div>           
+     <div class="col-sm-6 form text-center" id="signup" style="display:none">
+      <p class="head" style="margin-top:10">Settings <span class="glyphicon glyphicon-cog"></span></p>
+      <form>
+        <label class="err" id="nameerr"></label><br>
+        <input title="Name" name="name" type="name" value="{{username}}" placeholder="Name..." class="input" id='name' maxlength="15"><br>
+        <label class="err" id="emailerr"></label><br>
+        <input title="Email" name="email" type="email" value="{{email}}" placeholder="Email..." class="input" id="email"><br>
+        <label class="err" id="passerr"></label><br>
+        <input title="Password" name="password" type="password" placeholder="Password..." class="input" id="pass"><br>
+        <input type="button" id="signUpForm" value="Change" class="inputButton">
+        <input type="button" value="Cancel" class="inputButton" id="cancel">
+      </form>
+     </div>
+     <div class="col-sm-3"></div>  
+ </div>
 </div>

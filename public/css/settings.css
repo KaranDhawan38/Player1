@@ -1,0 +1,67 @@
+.head{
+    font-family:BankGothic Lt BT;
+    font-size: 35;
+    padding-left:10;
+    color:white;
+    cursor: pointer;
+   }  
+
+.details{
+        color: white;
+        font-size: 15;
+        margin-right:10;
+        margin-top:-40;
+        background-color:#1e1e1e;
+        border-color:#1e1e1e;
+        border-style:none;   
+      }   
+
+.list{
+     color: white!important;
+     text-align: center;
+   }        
+      
+.list:hover{
+            background-color: #252526!important;
+           }
+           
+.form{
+            border-style:solid;
+            border-width:1;
+            border-color:#ff0000;
+     }	 
+   
+.err{
+     color:red;
+    }
+
+.input{
+        width:70%;
+        border-width:2;
+        border-color:#ff0000;
+        margin-top:10;			  
+        margin-bottom:20;
+        border-style:solid;
+        font-size:20;	
+        font-weight:100;
+        color:black;			  
+      }
+
+.inputButton{
+                border-width:2;
+                border-color:#ff0000;
+                color:white;
+                margin-right:10;
+                margin-top:10;
+                background-color: #1e1e1e;
+                font-size:20;
+            }	
+
+.inputButton:hover{
+                    background-color: #252526;
+                  }
+                  
+                  
+    
+    
+               

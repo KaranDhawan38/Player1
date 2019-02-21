@@ -171,7 +171,26 @@ app.post('/login',function(req,res){
                                                                                                     res.send(status); 
                                                                                                   });
                                                                      });                                
-                                  });       
+                                  }); 
+                                  
+app.get('/logout',function(req,res){
+                                      req.session.destroy(function(){});
+                                      res.redirect('/');
+                                   });   
+                                   
+app.get('/settings',function(req,res){
+                                        if(!req.session.username)
+                                        res.redirect('/');
+                                        else
+                                        res.render('settings',{
+                                                                title:'Player1 | settings',
+                                                                style: 'settings.css',
+                                                                script: 'main.js',
+                                                                jquery: 'settingsjquery.js',
+                                                                username: req.session.username,
+                                                                email: req.session.email     
+                                                              });     
+                                     });                                   
 
 function readJSONBody(req, callback) 
 										   {
