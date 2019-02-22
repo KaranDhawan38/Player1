@@ -9,6 +9,8 @@ var handlebars = require('express-handlebars');
 var session = require('express-session');
 
 ///////////////Database Working//////////////////////////////
+/*var mongo = require('mongodb').MongoClient;
+var objectId = require('mongodb').ObjectID;*/
 var mongoose = require('mongoose');
 
 require('./public/js/user.model');
@@ -140,9 +142,18 @@ app.post('/save',function(req,res){
                                                                      });                                
                                   });
                                   
-app.post('/updateSave',function(req,res){
+app.put('/updateSave',function(req,res){
                                           readJSONBody(req, function(task) {
-                                                                                //user.findOneAndUpdate({_id:req.session.ID},{name: task.name},{email: task.email},function(){}); 
+                                                                                user.updateOne({_id: req.session.ID},{name: task.name ,email: task.email},function(err){
+                                                                                                                                                                          if(err)
+                                                                                                                                                                          return res.status(404).end();
+                                                                                                                                                                          else
+                                                                                                                                                                          {
+                                                                                                                                                                            req.session.username=task.name;
+                                                                                                                                                                            req.session.email=task.email;
+                                                                                                                                                                            return res.status(202).json(err);
+                                                                                                                                                                          }
+                                                                                                                                                                        }); 
                                                                            });      
                                         });                                  
 

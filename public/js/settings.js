@@ -59,9 +59,10 @@ update.addEventListener('click',function(event){
                                                                                                   if(flag==0)
                                                                                                   {
                                                                                                     var req = new XMLHttpRequest();
-                                                                                                    req.open('POST', '/updateSave');
+                                                                                                    req.open('PUT', '/updateSave');
                                                                                                     req.send(user);
                                                                                                     req.addEventListener('load',function(){
+                                                                                                                                            var res=request.responseText;
                                                                                                                                             alert("Player data updated!!!");
                                                                                                                                             window.location.replace("/main");
                                                                                                                                           });
