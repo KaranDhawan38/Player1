@@ -8,6 +8,7 @@
                 <div class="dropdown text-right">
                         <button class="details dropdown-toggle" type="button" data-toggle="dropdown">{{username}} ▼</button>
                         <ul class="dropdown-menu dropdown-menu-right" style="background-color:#1e1e1e;border-color:red">
+                            <li><a class="list" href="/settings">Change Password <span style="margin-left:10" class="glyphicon glyphicon-lock"></span></a></li>
                             <li><a class="list" href="/settings">Settings <span style="margin-left:10" class="glyphicon glyphicon-cog"></span></a></li>
                             <li><a class="list" href="/logout">Logout <span style="margin-left:10" class="glyphicon glyphicon-log-out"></span></a></li>
                         </ul>
@@ -17,15 +18,15 @@
     <div class="row" style="margin-top:90"> 
      <div class="col-sm-3"></div>           
      <div class="col-sm-6 form text-center" id="signup" style="display:none">
-      <p class="head" style="margin-top:10">Settings <span class="glyphicon glyphicon-cog"></span></p>
+      <a href="/settings" style="text-decoration: none!important;"><p class="head" style="margin-top:10">Settings <span class="glyphicon glyphicon-cog"></span></p></a>
       <form>
         <label class="err" id="nameerr"></label><br>
         <input title="Name" name="name" type="name" value="{{username}}" placeholder="Name..." class="input" id='name' maxlength="15"><br>
         <label class="err" id="emailerr"></label><br>
         <input title="Email" name="email" type="email" value="{{email}}" placeholder="Email..." class="input" id="email"><br>
         <label class="err" id="passerr"></label><br>
-        <input title="Password" name="password" type="password" placeholder="Password..." class="input" id="pass"><br>
-        <input type="button" id="signUpForm" value="Change" class="inputButton">
+        <input title="Password" name="password" type="password" placeholder="Enter your password..." class="input" id="pass"><br>
+        <input type="button" id="update" value="Update" class="inputButton">
         <input type="button" value="Cancel" class="inputButton" id="cancel">
       </form>
      </div>

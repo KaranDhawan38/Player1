@@ -65,7 +65,7 @@ app.get('/main',function(req,res){
                                     if(!req.session.username)
                                     res.redirect('/');
                                     else
-                                    res.render('main',{title:'Player1 | main',
+                                    res.render('main',{title:'Player1 | Main',
                                                        style: 'main.css',
                                                        script: 'main.js',
                                                        jquery: 'mainjquery.js',
@@ -138,7 +138,13 @@ app.post('/save',function(req,res){
                                                                                                       res.send("Success");
                                                                                                     });     
                                                                      });                                
-                                  });                                                                              
+                                  });
+                                  
+app.post('/updateSave',function(req,res){
+                                          readJSONBody(req, function(task) {
+                                                                                //user.findOneAndUpdate({_id:req.session.ID},{name: task.name},{email: task.email},function(){}); 
+                                                                           });      
+                                        });                                  
 
 app.post('/login',function(req,res){
                                     readJSONBody(req, function(task) {
@@ -166,6 +172,7 @@ app.post('/login',function(req,res){
                                                                                                       {
                                                                                                         req.session.username = userList[i].name;
                                                                                                         req.session.email = userList[i].email;
+                                                                                                        req.session.ID = userList[i]._id;
                                                                                                       } 
                                                                                                     }
                                                                                                     res.send(status); 
@@ -183,14 +190,58 @@ app.get('/settings',function(req,res){
                                         res.redirect('/');
                                         else
                                         res.render('settings',{
-                                                                title:'Player1 | settings',
+                                                                title:'Player1 | Settings',
                                                                 style: 'settings.css',
-                                                                script: 'main.js',
+                                                                script: 'settings.js',
                                                                 jquery: 'settingsjquery.js',
                                                                 username: req.session.username,
                                                                 email: req.session.email     
                                                               });     
-                                     });                                   
+                                     });    
+                                     
+app.post('/update',function(req,res){
+                                        readJSONBody(req, function(task) {
+                                                                          getUsers(function(userList){ 
+                                                                                                      var status={
+                                                                                                                   name:0,
+                                                                                                                   email:0,
+                                                                                                                   pass:0,
+                                                                                                                  };      
+                                                                                                        /////finding name and email duplicasy//////
+                                                                                                          var i;
+                                                                                                          for(i=0;i<userList.length;i++)
+                                                                                                          {
+                                                                                                            if(userList[i].name!=req.session.username && userList[i].name==task.name)
+                                                                                                            {
+                                                                                                              status.name=1;
+                                                                                                              break;
+                                                                                                            }
+                                                                                                          }
+                                                                                                          for(i=0;i<userList.length;i++)
+                                                                                                          {
+                                                                                                            if(userList[i].email!=req.session.email && userList[i].email==task.email)
+                                                                                                            {
+                                                                                                              status.email=1;
+                                                                                                              break;
+                                                                                                            }
+                                                                                                          }
+                                                                                                      if(status.name==0 && status.email==0)
+                                                                                                      {
+                                                                                                        //////Checking if password is correct//////
+                                                                                                        for(i=0;i<userList.length;i++)
+                                                                                                        {
+                                                                                                            if(userList[i]._id==req.session.ID)
+                                                                                                            {
+                                                                                                              if(userList[i].password!=task.pass)
+                                                                                                              status.pass=1;
+                                                                                                              break;
+                                                                                                            }
+                                                                                                        }
+                                                                                                      }    
+                                                                                                      res.send(status); 
+                                                                                                    });
+                                                                          }); 
+                                    });                                     
 
 function readJSONBody(req, callback) 
 										   {
