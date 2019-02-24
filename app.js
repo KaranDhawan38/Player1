@@ -51,20 +51,24 @@ app.listen(port,function(err){
                              });
 
 app.get('/',function(req,res){
-                                if(!req.session.username)
-                                {
-                                  res.render('index',{title:'Player1 | Login',
-                                                      style: 'style.css',
-                                                      script: 'script.js',
-                                                      jquery: 'index.js'      
-                                                     });  
-                                }
-                                else                   
-                                res.redirect('/main');
+                               res.redirect('/login');
                              });
+
+app.get('/login',function(req,res){
+                                    if(!req.session.ID)
+                                    {
+                                      res.render('index',{title:'Player1 | Login',
+                                                          style: 'style.css',
+                                                          script: 'script.js',
+                                                          jquery: 'index.js'      
+                                                        });  
+                                    }
+                                    else                   
+                                    res.redirect('/main');
+                                  });
                             
 app.get('/main',function(req,res){
-                                    if(!req.session.username)
+                                    if(!req.session.ID)
                                     res.redirect('/');
                                     else
                                     res.render('main',{title:'Player1 | Main',
@@ -197,7 +201,7 @@ app.get('/logout',function(req,res){
                                    });   
                                    
 app.get('/settings',function(req,res){
-                                        if(!req.session.username)
+                                        if(!req.session.ID)
                                         res.redirect('/');
                                         else
                                         res.render('settings',{
