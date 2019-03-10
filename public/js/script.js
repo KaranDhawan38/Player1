@@ -1,9 +1,9 @@
-var getUser=document.getElementById('signUpForm');//selecting the sign up form/////
-var getId=document.getElementById('signInForm');//selecting the sign in form/////
-var cancel=document.getElementById('cancel');
+var signUp = document.getElementById('signUpForm');//selecting the sign up form/////
+var signIn = document.getElementById('signInForm');//selecting the sign in form/////
+var cancel = document.getElementById('cancel');
 
 ///////////////When user creates account/////////////////
-getUser.addEventListener("click",function(event){
+signUp.addEventListener("click",function(event){
 																										var stat;
 																										var flag=0;												   
 																										var user=document.getElementById('user');
@@ -119,7 +119,7 @@ getUser.addEventListener("click",function(event){
 													                       });
 												  
 ///////////////When user signs in page///////////////////////////////////////////////////////////////////////												 
-getId.addEventListener("click",function(event){
+signIn.addEventListener("click",function(event){
 	                                                  var flag=0;
 																										////////////Validate email id/////////////////////
 																										var mailerr=document.getElementById('mailerr');
@@ -145,7 +145,7 @@ getId.addEventListener("click",function(event){
 																																pass:pass.value
 																															};
 																											credentials=JSON.stringify(credentials);								
-                                                                                                            var Request = new XMLHttpRequest();
+                                                      var Request = new XMLHttpRequest();
 																											Request.open('POST', '/login');
 																											Request.send(credentials);
 																											Request.addEventListener("load",function(){

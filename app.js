@@ -8,9 +8,9 @@ var handlebars = require('express-handlebars');
 
 var session = require('express-session');
 
+var nodemailer = require('nodemailer');
+
 ///////////////Database Working//////////////////////////////
-/*var mongo = require('mongodb').MongoClient;
-var objectId = require('mongodb').ObjectID;*/
 var mongoose = require('mongoose');
 
 require('./public/js/user.model');
