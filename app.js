@@ -130,6 +130,44 @@ app.post('/check',function(req,res){
                                                                            });   
                                        }); 
 
+app.post('/mail',function(req,res){
+                                    readJSONBody(req,function(task){
+                                                                      let transporter = nodemailer.createTransport({
+                                                                                                                    host: "smtp.gmail.com",
+                                                                                                                    port: 465,
+                                                                                                                    secure: true, // true for 465, false for other ports
+                                                                                                                    auth: {
+                                                                                                                            type: 'OAuth2',
+                                                                                                                            user: 'karandhawan2014@gmail.com', // generated ethereal user
+                                                                                                                            pass: 'Blue@1998' // generated ethereal password
+                                                                                                                          }
+                                                                                                                  });
+
+                                                                      let mailOptions = {
+                                                                                          from: '"PLAYER 1" <karandhawan2014@gmail.com>', // sender address
+                                                                                          to: task.email, // list of receivers
+                                                                                          subject: "Auto Generated code for Authentication", // Subject line
+                                                                                          text: "Greatings player, please put bellow code on PLAYER 1 log in page.", // plain text body
+                                                                                          html: "<h1>CODE : 1234</h1>" // html body
+                                                                                        };  
+
+                                                                      transporter.sendMail(mailOptions,function(err,info){
+                                                                                                                          if(err)
+                                                                                                                          {
+                                                                                                                            return console.log("Mail Could not be sent :"+err);
+                                                                                                                          }
+                                                                                                                          console.log("Message sent: %s", info.messageId);
+                                                                                                                          // Preview only available when sending through an Ethereal account
+                                                                                                                          console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+                                                                                                                          res.send.status(500);    
+                                                                                                                          // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+                                                                                                                          // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+                                                                                                                        });
+                                                    
+                                                                   });
+                                  });                                       
+
+
 app.post('/save',function(req,res){
                                     readJSONBody(req, function(task) {
                                                                       var newUser = new user();

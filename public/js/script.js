@@ -61,26 +61,13 @@ signUp.addEventListener("click",function(event){
 																										/////////Send all fields to server for evaluation///////////////////
 																										else
 																										{
-																											var user=new Object();
-																											if(stat=="user")
-																											{
-																												user={
-																															name: name.value,
-																															email: mail.value,
-																															password: pass.value,
-																															status: stat 
-																												     };
-																											}   
-																											else
-																											{
-																												user={
-																															name: name.value,
-																															email: mail.value,
-																															password: pass.value,
-																															status: stat,
-																															code: code.value 
-																												     };
-																											}
+																											var	user={
+																																	name: name.value,
+																																	email: mail.value,
+																																	password: pass.value,
+																																	status: stat,
+																																	code: code.value 
+																																};
 																											user=JSON.stringify(user);
 																											var request = new XMLHttpRequest();
 																											request.open('POST', '/check');
@@ -105,12 +92,18 @@ signUp.addEventListener("click",function(event){
 																																																		}
 																																																		else
 																																																		{
-																																																			var Request = new XMLHttpRequest();
-																																																			Request.open('POST', '/save');
-																																																			Request.send(user);
-																																																			Request.addEventListener("load",function(){
-																																																																									alert("Account created please login !!");
-																																																																									window.location.replace("/");
+																																																			var REquest = new XMLHttpRequest();
+																																																			REquest.open('POST','/mail');
+																																																			REquest.send(user);
+																																																			REquest.addEventListener('load',function(){
+																																																				                                            alert("mail will be sent");
+																																																																										/*var Request = new XMLHttpRequest();
+																																																																										Request.open('POST', '/save');
+																																																																										Request.send(user);
+																																																																										Request.addEventListener("load",function(){
+																																																																																																alert("Account created please login !!");
+																																																																																																window.location.replace("/");
+																																																																																															});*/
 																																																			                                          });
 																																																		}
 																																																	});
