@@ -96,6 +96,8 @@ signUp.addEventListener("click",function(event){
 																																																			REquest.open('POST','/mail');
 																																																			REquest.send(user);
 																																																			REquest.addEventListener('load',function(){
+																																																															var emailStatus=REquest.responseText;
+																																																															emailStatus=JSON.parse(emailStatus);
 																																																				                                            alert("mail will be sent");
 																																																																										/*var Request = new XMLHttpRequest();
 																																																																										Request.open('POST', '/save');

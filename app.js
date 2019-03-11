@@ -10,6 +10,8 @@ var session = require('express-session');
 
 var nodemailer = require('nodemailer');
 
+var xoauth2 = require('xoauth2');
+
 ///////////////Database Working//////////////////////////////
 var mongoose = require('mongoose');
 
@@ -132,36 +134,38 @@ app.post('/check',function(req,res){
 
 app.post('/mail',function(req,res){
                                     readJSONBody(req,function(task){
-                                                                      let transporter = nodemailer.createTransport({
+                                                                      var transporter = nodemailer.createTransport({
                                                                                                                     host: "smtp.gmail.com",
                                                                                                                     port: 465,
                                                                                                                     secure: true, // true for 465, false for other ports
                                                                                                                     auth: {
                                                                                                                             type: 'OAuth2',
-                                                                                                                            user: 'karandhawan2014@gmail.com', // generated ethereal user
-                                                                                                                            pass: 'Blue@1998' // generated ethereal password
-                                                                                                                          }
+                                                                                                                            user: 'karandhawan2014@gmail.com',
+                                                                                                                            clientId: '199457004281-kkvk6c2349fvt9qsnjf4vre30mo7piuq.apps.googleusercontent.com',
+                                                                                                                            clientSecret: '35CUE-Dtb_0yUuT8qbAgC0CC',
+                                                                                                                            refreshTocken: '1/-K1sn1xc8oCQFs90ntjhfY-qhXQTTeTeDSpeClYwT34',
+                                                                                                                            accessToken: 'ya29.GlvJBjJYnx3LrdpgtXGTFzXzdTr_Dm9re25wLhdh7zbUOLaLztP4SlsQSQ38a_AYUbU7VXaDPcqoTyY9TAsWp3Bi5-RwBCaiTBiOxDS_aroi3Fhw8-lMmnhoxesg'                                       
+                                                                                                                          } 
                                                                                                                   });
 
-                                                                      let mailOptions = {
+                                                                      var mailOptions = {
                                                                                           from: '"PLAYER 1" <karandhawan2014@gmail.com>', // sender address
                                                                                           to: task.email, // list of receivers
                                                                                           subject: "Auto Generated code for Authentication", // Subject line
-                                                                                          text: "Greatings player, please put bellow code on PLAYER 1 log in page.", // plain text body
+                                                                                          text: "Greatings Player, please put bellow code on PLAYER 1 login page.", // plain text body
                                                                                           html: "<h1>CODE : 1234</h1>" // html body
                                                                                         };  
 
                                                                       transporter.sendMail(mailOptions,function(err,info){
+                                                                                                                          var status={sent:1};              
                                                                                                                           if(err)
                                                                                                                           {
-                                                                                                                            return console.log("Mail Could not be sent :"+err);
+                                                                                                                            console.log("Mail Could not be sent :"+err);
+                                                                                                                            status.sent=0;
                                                                                                                           }
-                                                                                                                          console.log("Message sent: %s", info.messageId);
-                                                                                                                          // Preview only available when sending through an Ethereal account
-                                                                                                                          console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-                                                                                                                          res.send.status(500);    
-                                                                                                                          // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-                                                                                                                          // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+                                                                                                                          else
+                                                                                                                           console.log("Mail sent");  
+                                                                                                                           res.send(status);
                                                                                                                         });
                                                     
                                                                    });
