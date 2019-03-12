@@ -99,11 +99,9 @@ signUp.addEventListener("click",function(event){
 																																																																										var emailStatus=REquest.responseText;
 																																																																										emailStatus=JSON.parse(emailStatus);
 																																																																										if(emailStatus.sent==1)
-																																																																										alert("Authentication code has been sent on registered email address");
+																																																																										alert("Authentication code has been sent on "+mail.value+" Please check and come back here...");
 																																																																										else
-																																																																										{
-																																																																											emailerr.innerHTML="Please enter a valid email address";
-																																																																										}
+																																																																										emailerr.innerHTML="Please enter a valid email address";
 																																																																										/*var Request = new XMLHttpRequest();
 																																																																										Request.open('POST', '/save');
 																																																																										Request.send(user);

@@ -134,6 +134,7 @@ app.post('/check',function(req,res){
 
 app.post('/mail',function(req,res){
                                     readJSONBody(req,function(task){
+                                                                      var num = Math.floor(Math.random() * (9999 - 1000)) + 1000;
                                                                       var transporter = nodemailer.createTransport({
                                                                                                                     host: "smtp.gmail.com",
                                                                                                                     port: 465,
@@ -153,7 +154,7 @@ app.post('/mail',function(req,res){
                                                                                           to: task.email, // list of receivers
                                                                                           subject: "Auto Generated code for Authentication", // Subject line
                                                                                           text: "Greatings Player, please put bellow code on PLAYER 1 login page.", // plain text body
-                                                                                          html: "<h1>CODE : 1234</h1>" // html body
+                                                                                          html: '<div style="background-color:#1e1e1e;height:700;border-style:solid;border-width:1;border-color:#ff0000"><h3 align="center" style="color:white;margin-bottom:20">Greatings Player, please put the authentication code on PLAYER 1 login page thank you.</h3><h1 align="center" style="color:white">CODE : '+num+'</h1></div>' // html body
                                                                                         };  
 
                                                                       transporter.sendMail(mailOptions,function(err,info){
