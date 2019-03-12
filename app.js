@@ -141,9 +141,9 @@ app.post('/mail',function(req,res){
                                                                                                                     auth: {
                                                                                                                             type: 'OAuth2',
                                                                                                                             user: 'karandhawan2014@gmail.com',
-                                                                                                                            clientId: '199457004281-kkvk6c2349fvt9qsnjf4vre30mo7piuq.apps.googleusercontent.com',
-                                                                                                                            clientSecret: '35CUE-Dtb_0yUuT8qbAgC0CC',
-                                                                                                                            refreshTocken: '1/-K1sn1xc8oCQFs90ntjhfY-qhXQTTeTeDSpeClYwT34',
+                                                                                                                            clientId: '199457004281-fanbepcbc1it16csfa72ol90eodi3gdf.apps.googleusercontent.com',
+                                                                                                                            clientSecret: 'snfQvN_9V190yv3kNURs-50K',
+                                                                                                                            refreshToken: '1/-K1sn1xc8oCQFs90ntjhfY-qhXQTTeTeDSpeClYwT34',
                                                                                                                             accessToken: 'ya29.GlvJBjJYnx3LrdpgtXGTFzXzdTr_Dm9re25wLhdh7zbUOLaLztP4SlsQSQ38a_AYUbU7VXaDPcqoTyY9TAsWp3Bi5-RwBCaiTBiOxDS_aroi3Fhw8-lMmnhoxesg'                                       
                                                                                                                           } 
                                                                                                                   });
@@ -159,13 +159,8 @@ app.post('/mail',function(req,res){
                                                                       transporter.sendMail(mailOptions,function(err,info){
                                                                                                                           var status={sent:1};              
                                                                                                                           if(err)
-                                                                                                                          {
-                                                                                                                            console.log("Mail Could not be sent :"+err);
-                                                                                                                            status.sent=0;
-                                                                                                                          }
-                                                                                                                          else
-                                                                                                                           console.log("Mail sent");  
-                                                                                                                           res.send(status);
+                                                                                                                          status.sent=0;  
+                                                                                                                          res.send(status);
                                                                                                                         });
                                                     
                                                                    });

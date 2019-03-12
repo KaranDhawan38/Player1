@@ -96,9 +96,14 @@ signUp.addEventListener("click",function(event){
 																																																			REquest.open('POST','/mail');
 																																																			REquest.send(user);
 																																																			REquest.addEventListener('load',function(){
-																																																															var emailStatus=REquest.responseText;
-																																																															emailStatus=JSON.parse(emailStatus);
-																																																				                                            alert("mail will be sent");
+																																																																										var emailStatus=REquest.responseText;
+																																																																										emailStatus=JSON.parse(emailStatus);
+																																																																										if(emailStatus.sent==1)
+																																																																										alert("Authentication code has been sent on registered email address");
+																																																																										else
+																																																																										{
+																																																																											emailerr.innerHTML="Please enter a valid email address";
+																																																																										}
 																																																																										/*var Request = new XMLHttpRequest();
 																																																																										Request.open('POST', '/save');
 																																																																										Request.send(user);
